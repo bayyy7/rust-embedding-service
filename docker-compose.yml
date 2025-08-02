@@ -1,0 +1,31 @@
+services:
+  embedding-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: embedding-service
+    ports:
+      - "6010:6010"
+    environment:
+      - APP_SERVER_ADDRESS=0.0.0.0:6010
+    volumes:
+      - embedding_cache:/app/.cache
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "timeout", "5s", "bash", "-c", "</dev/tcp/localhost/6010"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1G
+        reservations:
+          cpus: "0.25"
+          memory: 256M
+
+volumes:
+  embedding_cache:
+    driver: local

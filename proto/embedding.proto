@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package embedding;
+
+service EmbeddingService {
+  rpc GetEmbeddings(EmbeddingRequest) returns (EmbeddingResponse);
+}
+
+message EmbeddingRequest {
+  oneof input {
+    string single_text = 1;
+    TextBatch batch_texts = 2;
+  }
+}
+
+message TextBatch {
+  repeated string texts = 1;
+}
+
+message EmbeddingResponse {
+  repeated Vector vectors = 1;
+}
+
+message Vector {
+  repeated float values = 1;
+}

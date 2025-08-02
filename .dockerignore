@@ -1,0 +1,27 @@
+target/
+
+# IDE files
+
+.vscode/
+.idea/
+_.swp
+_.swo
+
+# OS files
+
+.DS_Store
+Thumbs.db
+
+# Documentation
+
+README.md
+\*.md
+
+# Git
+
+.git/
+.gitignore
+
+# Logs
+
+\*.log

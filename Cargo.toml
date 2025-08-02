@@ -1,0 +1,21 @@
+[package]
+name = "embedding-service"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.98"
+dotenvy = "0.15.7"
+fastembed = "5.0.0"
+prost = "0.12"
+tokio = { version = "1.47.0", features = ["macros", "rt-multi-thread"] }
+tonic = "0.11"
+tracing = "0.1.41"
+tracing-subscriber = "0.3.19"
+
+[build-dependencies]
+tonic-build = "0.11"
+
+[[bin]]
+name = "server"
+path = "src/main.rs"
